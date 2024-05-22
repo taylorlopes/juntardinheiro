@@ -2,7 +2,7 @@
 
 Monte sua estratégia para "juntar dinheiro" e controle seus investimentos.
 
-**Aplicação experimental como requisito parcial para conclusão do curso de Especialização em Desenvolvimento Full Stack (PUC Minas).**
+> **Aplicação experimental como requisito parcial para conclusão do curso de Especialização em Desenvolvimento Full Stack (PUC Minas).**
 
 Acesso: https://juntardinheiro.com:8000
 
