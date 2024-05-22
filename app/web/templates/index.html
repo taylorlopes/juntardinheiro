@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row justify-content-md-center">
+        <div class="col col-lg-5 ">
+            <div class="mt-5">
+                <h1 class="fw-bold  text-responsive text-center">Monte sua estratégia para "juntar dinheiro" e controle seus investimentos em 6 passos!</h1>
+            </div>
+            <div class="text-center mt-4">
+                {% if usuario.usuario_logado %}   
+                    <a href="{{ url_for('painel') }}" class="btn btn-success btn-lg m-2 w-180">Entrar</a><br />
+                {% else %}                
+                    <a href="{{ url_for('login') }}" class="btn btn-primary btn-lg m-2 w-180">Login</a><br />
+                    <a href="{{ url_for('usuario_novo') }}"class="btn btn-secondary btn-lg m-2 w-180">Cadastro</a>
+                {% endif %}                
+            </div>
+        </div>
+        <div class="col-md-auto">
+            <ul class="list-group mt-4 mb-4">
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto my-1 w-100">
+                        <div class="float-start">
+                            <i class="fa-solid fa-1 bg-primary text-white dot_circle me-3 mt-2"></i>
+                        </div>
+                        <div class="float-start">
+                            <div class="fw-bold">Crie uma carteira de investimento</div>
+                            <div>Dê um nome como "Aposentadoria"</div>
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto my-1 w-100">
+                        <div class="float-start">
+                            <i class="fa-solid fa-2 bg-primary text-white dot_circle me-3 mt-2"></i>
+                        </div>
+                        <div class="float-start">
+                            <div class="fw-bold">Defina seu perfil de investidor</div>
+                            <div>Perfil moderado: 50% em renda fixa</div>
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto my-1 w-100">
+                        <div class="float-start">
+                            <i class="fa-solid fa-3 bg-primary text-white dot_circle me-3 mt-2"></i>
+                        </div>
+                        <div class="float-start">
+                            <div class="fw-bold">Defina as classes de ativos e %</div>
+                            <div>Ações 15%, Cripto 5%, Exterior 10%, etc</div>
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto my-1 w-100">
+                        <div class="float-start">
+                            <i class="fa-solid fa-4 bg-primary text-white dot_circle me-3 mt-2"></i>
+                        </div>
+                        <div class="float-start">
+                            <div class="fw-bold">Defina os ativos e %</div>
+                            <div>VALE3 3%, BITH11 2%, IVVB11 5%, etc</div>
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto my-1 w-100">
+                        <div class="float-start">
+                            <i class="fa-solid fa-5 bg-primary text-white dot_circle me-3 mt-2"></i>
+                        </div>
+                        <div class="float-start">
+                            <div class="fw-bold">Faça aportes mensais</div>
+                            <div>Compre R$ ###,00 em ativos conforme %</div>
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto my-1 w-100">
+                        <div class="float-start">
+                            <i class="fa-solid fa-6 bg-primary text-white dot_circle me-3 mt-2"></i>
+                        </div>
+                        <div class="float-start">
+                            <div class="fw-bold">Reequilibre a carteira periodicamente</div>
+                            <div>A cada # meses ajustar carteira para % definido</div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div> 
+
+{% endblock content %}
+
+{% block scripts %}
+<script>
+
+</script>
+{% endblock scripts %}

@@ -1,0 +1,221 @@
+ 
+    {
+      "id": "",
+      "nome": "",
+      "renda_fixa_percentual": 65,
+      "renda_variavel_percentual": 35,
+      "perfil_investidor_id": 2,
+      "moeda_id": 1,
+      "usuario_id": "",
+      "classes_ativos": [
+        {
+          "id": "{CA_1}",
+          "nome": "Criptos",
+          "descricao": "Investimento em criptomoedas como Bitcoin ou Ethereum",
+          "percentual": 5,
+          "carteira_id": "",
+          "grupo_ativo_id": 2,
+          "grupo_ativo": {
+            "id": 2,
+            "nome": "Renda Variável"
+          },
+          "ativos": [
+            {
+              "id": "{AT_1}",
+              "ticker": "HASH11",
+              "nome": "",
+              "cnpj": "",
+              "percentual": 5,
+              "nacional": "1",
+              "classe_ativo_id": "{CA_1}",
+              "tipo_ativo_id": 7,
+              "setor_id": 35,
+              "moeda_id": 1
+            }
+          ]
+        },
+        {
+          "id": "{CA_2}",
+          "nome": "Exterior",
+          "descricao": "Investimento em empresas ou fundos (ETFs) listados na bolsa de valores estrangeira como S&P 500, Nasdaq e Dow Jones",
+          "percentual": 10,
+          "carteira_id": "",
+          "grupo_ativo_id": 2,
+          "grupo_ativo": {
+            "id": 2,
+            "nome": "Renda Variável"
+          },
+          "ativos": [
+            {
+              "id": "{AT_2}",
+              "ticker": "IVVB11",
+              "nome": "ETF DA BOLSA AMERICANA",
+              "cnpj": "",
+              "percentual": 10,
+              "nacional": "1",
+              "classe_ativo_id": "{CA_2}",
+              "tipo_ativo_id": 13,
+              "setor_id": 31,
+              "moeda_id": 1
+            }
+          ]
+        },
+        {
+          "id": "{CA_3}",
+          "nome": "Ações",
+          "descricao": "Investimento em empresas ou fundos (ETFs) listados na bolsa de valores do Brasil",
+          "percentual": 10,
+          "carteira_id": "",
+          "grupo_ativo_id": 2,
+          "grupo_ativo": {
+            "id": 2,
+            "nome": "Renda Variável"
+          },
+          "ativos": [
+            {
+              "id": "{AT_3}",
+              "ticker": "SAPR4",
+              "nome": "SANEPAR",
+              "cnpj": "",
+              "percentual": 5,
+              "nacional": "1",
+              "classe_ativo_id": "{CA_3}",
+              "tipo_ativo_id": 2,
+              "setor_id": 29,
+              "moeda_id": 1
+            },
+            {
+              "id": "{AT_4}",
+              "ticker": "TAEE11",
+              "nome": "TAESA",
+              "cnpj": "",
+              "percentual": 5,
+              "nacional": "1",
+              "classe_ativo_id": "{CA_3}",
+              "tipo_ativo_id": 2,
+              "setor_id": 10,
+              "moeda_id": 1
+            }
+          ]
+        },
+        {
+          "id": "{CA_4}",
+          "nome": "Fiis",
+          "descricao": "Investimento em fundos imobiliários listados na bolsa de valores do Brasil",
+          "percentual": 10,
+          "carteira_id": "",
+          "grupo_ativo_id": 2,
+          "grupo_ativo": {
+            "id": 2,
+            "nome": "Renda Variável"
+          },
+          "ativos": [
+            {
+              "id": "{AT_5}",
+              "ticker": "VISC11",
+              "nome": "Vinci Shopping Centers",
+              "cnpj": "",
+              "percentual": 5,
+              "nacional": "1",
+              "classe_ativo_id": "{CA_4}",
+              "tipo_ativo_id": 14,
+              "setor_id": 23,
+              "moeda_id": 1
+            },
+            {
+              "id": "{AT_6}",
+              "ticker": "MXRF11",
+              "nome": "Maxi Renda",
+              "cnpj": "",
+              "percentual": 5,
+              "nacional": "1",
+              "classe_ativo_id": "{CA_4}",
+              "tipo_ativo_id": 14,
+              "setor_id": 16,
+              "moeda_id": 1
+            }
+          ]
+        },
+        {
+          "id": "{CA_5}",
+          "nome": "Pós-fixado",
+          "descricao": "Investimento em títulos com rentabilidade variável atrelada a determinado indexador econômico como a taxa TR, Selic ou IPCA (inflação oficial). Exemplo: Poupança, Tesouro Selic ou IPCA+ e LCI/LCA pós-fixado",
+          "percentual": 50,
+          "carteira_id": "",
+          "grupo_ativo_id": 1,
+          "grupo_ativo": {
+            "id": 1,
+            "nome": "Renda Fixa"
+          },
+          "ativos": [
+            {
+              "id": "{AT_7}",
+              "ticker": "TDIPCA",
+              "nome": "Tesouro Direto IPCA+",
+              "cnpj": "",
+              "percentual": 25,
+              "nacional": "1",
+              "classe_ativo_id": "{CA_5}",
+              "tipo_ativo_id": 23,
+              "setor_id": 11,
+              "moeda_id": 1
+            },
+            {
+              "id": "{AT_8}",
+              "ticker": "TDSELIC",
+              "nome": "Tesouro Direto SELIC",
+              "cnpj": "",
+              "percentual": 20,
+              "nacional": "1",
+              "classe_ativo_id": "{CA_5}",
+              "tipo_ativo_id": 23,
+              "setor_id": 11,
+              "moeda_id": 1
+            },
+            {
+              "id": "{AT_9}",
+              "ticker": "POUPBB",
+              "nome": "Poupança Banco do Brasil",
+              "cnpj": "",
+              "percentual": 5,
+              "nacional": "1",
+              "classe_ativo_id": "{CA_5}",
+              "tipo_ativo_id": 20,
+              "setor_id": 11,
+              "moeda_id": 1
+            }
+          ]
+        },
+
+
+        {
+          "id": "{CA_6}",
+          "nome": "Prefixado",
+          "descricao": "Investimento em títulos com rentabilidade garantida definida no momento da aplicação. Exemplo: Tesouro Prefixado, Debêntures, LCI/LCA prefixado, etc",
+          "percentual": 15,
+          "carteira_id": "",
+          "grupo_ativo_id": 1,
+          "grupo_ativo": {
+            "id": 1,
+            "nome": "Renda Fixa"
+          },
+          "ativos": [
+            {
+              "id": "{AT_10}",
+              "ticker": "LCIBB",
+              "nome": "Letra de Crédito Imobiliário do Banco do Brasil",
+              "cnpj": "",
+              "percentual": 15,
+              "nacional": "1",
+              "classe_ativo_id": "{CA_6}",
+              "tipo_ativo_id": 18,
+              "setor_id": 12,
+              "moeda_id": 1
+            }
+          ]
+        }
+        
+        
+      ]
+    }
+ 

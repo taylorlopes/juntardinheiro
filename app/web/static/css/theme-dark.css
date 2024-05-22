@@ -1,0 +1,42 @@
+ 
+.form-control { 
+    background-color: rgb(45, 52, 61);
+}
+
+.form-control:focus {
+    background-color: rgb(45, 52, 61);
+}
+
+a {
+    color: #198754;
+}
+
+table th .th-inner {
+    background-color: #191c1e;
+}
+
+            
+select  {
+    --bs-bg-opacity: 1;
+    background-color: rgba(var(--bs-dark-rgb),var(--bs-bg-opacity)) !important;
+    --bs-text-opacity: 1;
+    color: rgba(var(--bs-white-rgb),var(--bs-text-opacity)) !important;
+}
+
+input[type="number"] {
+    border: var(--bs-border-width) solid var(--bs-border-color);                
+}
+
+.accordion-button:not(.collapsed) {
+    color: var(--bs-accordion-active-color);
+    background-color: #191c1e;
+}
+
+.navbar-dark {
+    background-color: #292f35 !important;
+}
+
+.navbar-custom {
+    /* border-bottom: 1px solid #000;   */
+
+}  

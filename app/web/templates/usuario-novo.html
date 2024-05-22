@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container"> 
+    <h1 class="fw-bold display-6 text-responsive">Cadastro</h1> 
+    <form id="frm-cadastro-usuario" class="row" >
+        <div class="col-md-4">
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="nome" name="nome" placeholder="Fulano Silva">
+                <label for="nome">Nome</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="email" class="form-control" id="email" name="email" placeholder="ame@example.com">
+                <label for="email">E-mail</label>
+            </div>
+            <div class="form-floating">
+                <input type="password" class="form-control" id="senha" name="senha" placeholder="Senha" autocomplete="false" readonly onfocus="this.removeAttribute('readonly');"  >
+                <label for="senha">Senha</label>
+            </div>
+            <button type="button" id="btn-usuario-novo" class="btn btn-primary mt-3">Cadastrar</button>
+        </div>
+    </form>
+</div>  
+{% endblock content %}
+
+{% block scripts %}
+<script> 
+document.getElementById("btn-usuario-novo").addEventListener("click", function() {        
+    spinner()
+    let form = document.querySelector('#frm-cadastro-usuario');
+    let formData = new FormData(form);
+    let data = JSON.stringify(Object.fromEntries(formData));
+    axios.post('/api/v1/usuarios', formData, {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then(function (response) { 
+            setMessage("Usuário cadastrado com sucesso!", "success") 
+            form.reset();
+            setTimeout(() => {
+                window.location = "/login"
+            }, 2000);            
+        })
+        .catch(function (error) {             
+            if (error.response && typeof error.response.data.detail == 'string')
+                setMessage(error.response.data.detail, "danger")                  
+            else
+                setMessage("Houve uma falha ao criar a carteira.", "danger")                 
+        })
+        .finally(() => {
+            spinner(false)
+        });    
+}); 
+</script> 
+{% endblock scripts %}

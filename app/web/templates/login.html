@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %} 
+
+ 
+<div class="container"> 
+    <h1 class="fw-bold display-6 text-responsive">Login</h1> 
+    <form id="frm-login" class="row">
+        <div class="col-md-4">
+            <div class="form-floating mb-3">
+                <input type="email" class="form-control w-100" id="username" name="username" placeholder="name@example.com">
+                <label for="username">E-mail</label>
+            </div>
+            <div class="form-floating">
+                <input type="password" class="form-control w-100" id="password" name="password" placeholder="Senha">
+                <label for="password">Senha</label>
+            </div>
+            <a href="/altera-senha" class="float-end mt-2">Esqueceu a senha?</a>
+            <a href="/usuario-novo" class="float-end mt-2 me-2">Não tem cadastro?</a>
+            <button type="button" id="btn-login" class="btn btn-success mt-3">Entrar</button>
+        </div>
+    </form> 
+</div>
+ 
+ 
+{% endblock content %}
+
+{% block scripts %}
+<script> 
+document.getElementById("btn-login").addEventListener("click", function() {        
+    spinner()
+    let form = document.querySelector('#frm-login');
+    let formData = new FormData(form); 
+    axios.post('/api/v1/token', formData, {}, {   
+        headers: {
+            'Access-Control-Allow-Origin': '*', 
+            'Content-Type': 'application/json'
+        }
+    }).then(function (response) {
+            window.location = "/painel"
+        })
+        .catch(function (error) {    
+            if (error.response && typeof error.response.data.detail == 'string')
+                setMessage(error.response.data.detail, "danger")                  
+            else
+                setMessage("E-mail ou senha inválidos.", "danger")       
+        })
+        .finally(() => {
+            spinner(false)
+        });    
+});
+ 
+</script> 
+{% endblock scripts %}

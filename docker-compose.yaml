@@ -1,0 +1,11 @@
+version: "3.3"
+services:
+  web:
+    image: juntardinheiro:1.0
+    container_name: juntardinheiro
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    command: uvicorn app.main:app --reload --workers 1  --ssl-certfile ./ssl/cert.pem --ssl-keyfile ./ssl/key.pem --host 0.0.0.0 --port 8000
+    restart: on-failure

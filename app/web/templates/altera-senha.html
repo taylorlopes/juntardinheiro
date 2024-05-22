@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+
+{% block content %} 
+
+{% if step == 1 %}
+<div class="container"> 
+    <h1 class="fw-bold display-6 text-responsive">Altera senha</h1> 
+    <form id="frm-altera-senha" class="row">
+        <div class="col-md-4">
+            <div class="form-floating mb-3">
+                <input type="email" class="form-control w-100" id="email" name="email" value="{{ email }}" placeholder="name@example.com">
+                <label for="email">E-mail de recuperação</label>
+            </div>                         
+            <div class="my-2">
+                {% if email %}
+                <a href="/painel" class="float-end">Painel</a> 
+                {% else %}
+                <a href="/login" class="float-end">Login</a> 
+                {% endif %}
+                <small class="text-muted">Você receberá um link para alterar a senha.</small>
+            </div>          
+            <button type="button" id="btn-altera-senha" class="btn btn-success mt-3">Enviar</button>
+        </div>
+    </form>    
+</div>
+{% endif %}
+
+{% if step == 2 %}
+<div class="container"> 
+    <h1 class="fw-bold display-6 text-responsive">Nova senha</h1> 
+    <form id="frm-nova-senha" class="row">
+        <div class="col-md-4">
+            <div class="form-floating mb-3">
+                <input type="password" class="form-control w-100" id="senha" name="senha">
+                <input type="hidden" name="token" value="{{ token }}">
+                <label for="senha">Senha</label>
+            </div>           
+            <a href="/altera-senha" class="float-end mt-2">Login</a>
+            <button type="button" id="btn-nova-senha" class="btn btn-success mt-2">Confirmar</button>
+        </div>
+    </form>    
+</div>
+{% endif %}
+ 
+ 
+{% endblock content %}
+
+{% block scripts %}
+<script> 
+   
+$('#btn-altera-senha').on('click', function() {
+    spinner()
+    let form = document.querySelector('#frm-altera-senha');
+    let formData = new FormData(form); 
+    axios.post('/api/v1/login/altera-senha/1', formData, {}, {   
+        headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/x-www-form-urlencoded'
+        },
+    }).then(function (response) {
+        console.log(response.data)
+        setMessage("Verifique seu e-mail e redefina a senha.", "success")       
+        setTimeout(() => {
+            // window.location = "/login"
+        }, 3000);
+    })
+    .catch(function (error) {    
+        if (error.response && typeof error.response.data.detail == 'string')
+            setMessage(error.response.data.detail, "danger")                  
+        else
+            setMessage("Falha ao enviar e-mail.", "danger")       
+    })
+    .finally(() => {
+        spinner(false)
+    }); 
+});   
+
+
+$('#btn-nova-senha').on('click', function() {
+    spinner()
+    let form = document.querySelector('#frm-nova-senha');
+    let formData = new FormData(form); 
+    axios.post('/api/v1/login/altera-senha/2', formData, {}, {   
+        headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/x-www-form-urlencoded'
+        },
+    }).then(function (response) {
+        setMessage("Senha alterada com sucesso. Efetua o login!", "success")       
+        setTimeout(() => {
+            window.location = "/login"
+        }, 3000);
+ 
+    })
+    .catch(function (error) {    
+        if (error.response && typeof error.response.data.detail == 'string')
+            setMessage(error.response.data.detail, "danger")                  
+        else
+            setMessage("Falha ao enviar e-mail.", "danger")       
+    })
+    .finally(() => {
+        spinner(false)
+    });   
+});      
+ 
+</script> 
+{% endblock scripts %}

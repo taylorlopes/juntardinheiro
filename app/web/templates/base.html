@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">    
+    <title>Juntar Dinheiro</title>
+
+    <!-- CSS -->
+    <link rel="icon" type="image/x-icon" href="">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>🟢</text></svg>">    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+    
+    <link rel="stylesheet" href="{{ url_for('static', path='css/dataTables.bootstrap5.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='css/style.css') }}">
+ 
+    <!-- Fonts -->
+    <link href="{{ url_for('static', path='fonts/css/fontawesome.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', path='fonts/css/brands.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', path='fonts/css/solid.css') }}" rel="stylesheet">  
+
+    <!-- Charts https://www.highcharts.com/ -->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+    <!-- choices https://github.com/Choices-js/Choices -->
+    <script src="https://cdn.jsdelivr.net/npm/choices.js@9.0.1/public/assets/scripts/choices.min.js"></script>
+     
+    <!-- Themes: dark | light -->
+    {% set THEME = request.cookies.get('theme') if request.cookies.get('theme') else 'dark' %}
+    {% if THEME == 'dark' %}
+        <link rel="stylesheet" href="{{ url_for('static', path='css/theme-dark.css') }}">
+    {% else %}    
+        <link rel="stylesheet" href="{{ url_for('static', path='css/theme-default.css') }}">
+    {% endif %}
+
+    {% block css %}{% endblock css %} 
+</head>
+<body data-bs-theme="{{ THEME }}">
+    <div class="container wrap-app">   
+
+        <nav class="navbar navbar-{{ THEME }} bg-{{ THEME }} ">            
+
+            <div class="container-fluid">                   
+
+                <a href="/" class="navbar-brand">            
+                    <div class="logo-title d-inline-block">
+                        <div class="fs-5 fw-bold "><i class="fa-solid fa-sack-dollar text-success me-2"></i> Juntar Dinheiro</div>                        
+                    </div>
+                </a>
+
+                <div id="message-alert" class="p-3" style="top: 0px;" ></div>
+
+                <div class="d-flex"> 
+                
+                    {% if usuario.usuario_logado %}    
+                        <a href="/painel" class="btn btn-{{ THEME }}" role="button" title="Painel">
+                            <i class="fa-solid fa-house "></i>                         
+                        </a>                       
+                        <div class="btn-group dropdown ">
+                            <a class="btn navbar-menu btn-{{ THEME }} ms-1 dropdown-toggle" title="Perfil" type="button"
+                                id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa-solid fa-circle-user fa-lg "></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
+                                <li class="">
+                                    <a  class="dropdown-item ">
+                                        <!-- <i class="fa-solid fa-user me-1"></i> -->
+                                        <div>
+                                            {{ usuario.usuario_nome }}<br />
+                                            <small class="text-muted">{{ usuario.usuario_email}}</small>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li>
+                     
+                                    <a href="/altera-senha?email={{ usuario.usuario_email }}" class="dropdown-item">
+                                        <i class="fa-solid fa-lock me-1"></i>
+                                        Alterar senha
+                                    </a>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li>
+                                    {% set NEW_THEME = 'light' if THEME == 'dark' else 'dark' %}
+                                    <a href="/tema/?url={{ request.path }}" class="dropdown-item">
+                                        <i class="fa-solid fa-palette me-1"></i> 
+                                        Tema {{ NEW_THEME }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li>
+                                    <a href="/logout" class="dropdown-item">
+                                        <i class="fa-solid fa-right-from-bracket me-1"></i>
+                                        Sair
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    {% endif %}
+
+                </div>
+            </div>
+        </nav>        
+        <div class="container wrap-content">   
+            {% block content %}{% endblock content %}
+        </div> 
+
+    </div> <!-- wrap-app --> 
+ 
+    <div class="loading d-none">
+        <div class="spinner">
+            <div class="spinner-border text-primary" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Axios -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+ 
+    <!-- jQuery -->
+    <script src="{{ url_for('static', path='js/jquery-3.5.1.js') }}"></script>
+
+    <!-- Bootstrap -->
+    <script src="{{ url_for('static', path='js/popper.min.js') }}"></script> 
+    <script src="{{ url_for('static', path='js/bootstrap.bundle.min.js') }}"></script>        
+
+    <!-- Datatables -->
+    <script src="{{ url_for('static', path='js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ url_for('static', path='js/dataTables.bootstrap5.min.js') }}"></script>
+
+    <!-- Datatable Export Buttons -->
+    <script src="{{ url_for('static', path='js/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ url_for('static', path='js/jszip.min.js') }}"></script>
+    <script src="{{ url_for('static', path='js/pdfmake.min.js') }}"></script>
+    <script src="{{ url_for('static', path='js/vfs_fonts.js') }}"></script>
+    <script src="{{ url_for('static', path='js/buttons.html5.min.js') }}"></script>
+
+    <!-- Ajax Autocomplete for jQuery https://github.com/devbridge/jQuery-Autocomplete -->
+    <script src="{{ url_for('static', path='js/jquery.autocomplete.min.js') }}"></script>
+
+    <!-- jQuery maskMoney https://github.com/plentz/jquery-maskmoney | https://plentz.github.io/jquery-maskmoney/ -->
+    <script src="{{ url_for('static', path='js/jquery.maskMoney.min.js') }}"></script>
+
+    <!-- Bootstrap Table https://examples.bootstrap-table.com/ -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-table@1.22.4/dist/bootstrap-table.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-table@1.22.4/dist/bootstrap-table.min.js"></script>
+    <script src="{{ url_for('static', path='js/bootstrap-table-pt-BR.js') }}"></script>    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-table@1.22.4/dist/extensions/multiple-sort/bootstrap-table-multiple-sort.js"></script>
+    
+    <!-- JavaScript Cookie https://github.com/js-cookie/js-cookie -->
+    <script src=" https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js "></script>
+
+    <!-- Scripts -->
+    <script src="{{ url_for('static', path='js/scripts.js') }}"></script>    
+    
+    <script>
+        var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+        var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+            return new bootstrap.Popover(popoverTriggerEl)
+        })
+    </script>  
+    {% block scripts %}{% endblock scripts %}    
+</body>
+</html>
